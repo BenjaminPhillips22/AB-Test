@@ -2,8 +2,12 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(lubridate)
+library(bayesAB)
+
+source('~/Projects/AB-Test/functions.R', echo=FALSE)
 
 set.seed(101)
+runs <- 5
 
 # dataframe with binary conversion information
 
@@ -218,7 +222,7 @@ too_many_p.values <- function(seed, make_plot=FALSE){
     
 }
 
-seeds <- 1:1000
+seeds <- 1:runs
 below_0.05 <- c()
 for(s in seeds){
     below_0.05 <- c(below_0.05, too_many_p.values(s))
